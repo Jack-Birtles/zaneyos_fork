@@ -21,7 +21,7 @@ with lib;
         output = "AOC U34G2G4R3 0x0000A6BB";
         layer = "top";
         position = "top";
-        modules-left = [ "custom/launcher" "cpu" "memory" "custom/media" "hyprland/workspaces" "tray" ];
+        modules-left = [ "custom/launcher" "cpu" "memory" "hyprland/workspaces" "tray" ];
         modules-center = [ "clock" "custom/weather" ];
         modules-right = [ "pulseaudio" "network" "custom/power" ];
 
@@ -96,7 +96,7 @@ with lib;
         "custom/weather" = {
             "format" = "{}";
             "tooltip" = true;
-            "interval" = 1800;
+            "interval" = 900;
             "exec" = "~/zaneyos/config/wttr.py";
             "return-type" = "json";
             };
@@ -107,7 +107,7 @@ with lib;
             "max-length" = 20;
             "format-icons" = {
                 "spotify" = " ";
-                "default" = " ";
+                "default" = "󰝚 ";
             };
             "escape" = true;
             "on-click" = "playerctl play-pause";

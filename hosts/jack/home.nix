@@ -8,6 +8,12 @@
 }:
 let
   inherit (import ./variables.nix) gitUsername gitEmail;
+  hyprlock-blur = pkgs.writeShellScriptBin "hyprlock-blur" ''
+      grim -o DP-8 -l 0 /tmp/screenshot1.png &
+      grim -o DP-4 -l 0 /tmp/screenshot2.png &
+      wait &&
+      hyprlock
+    '';
 in
 {
   # Home Manager Settings
@@ -92,6 +98,7 @@ in
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
   stylix.targets.hyprland.enable = false;
+  stylix.targets.hyprlock.enable = false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -128,6 +135,7 @@ in
       inherit pkgs;
       inherit host;
     })
+    hyprlock-blur
   ];
 
   services = {
@@ -136,12 +144,12 @@ in
         general = {
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
-          lock_cmd = "hyprlock";
+          lock_cmd = "hyprlock-blur";
           };
         listener = [
           {
             timeout = 300;
-            on-timeout = "hyprlock";
+            on-timeout = "hyprlock-blur";
           }
           {
             timeout = 600;
@@ -154,6 +162,69 @@ in
   };
 
   programs = {
+    hyprlock = {
+      enable = true;
+      settings = {
+        background = [
+          {
+            monitor = "AOC U34G2G4R3 0x0000A6BB";
+            path = "/tmp/screenshot1.png";
+            blur_passes = 2; # 0 disables blurring
+            blur_size = 7;
+            noise = 1.17e-2;
+          }
+          {
+            monitor = "Lenovo Group Limited T24m-29 V90CP2GT";
+            path = "/tmp/screenshot2.png";
+            blur_passes = 2; # 0 disables blurring
+            blur_size = 7;
+            noise = 1.17e-2;
+          }
+        ];
+        label = [
+          {
+            monitor = "AOC U34G2G4R3 0x0000A6BB";
+            text = "$TIME";
+            color = "a9b1d6";
+            font_size = 95;
+            font_family = "JetBrainsMono Nerd Font Mono";
+            position = "0, 300";
+            halign = "center";
+            valign = "center";
+          }
+          {
+            monitor = "AOC U34G2G4R3 0x0000A6BB";
+            text = ''cmd[update:1000] echo $(date +"%A, %B %d")'';
+            color = "a9b1d6";
+            font_size = 22;
+            font_family = "JetBrainsMono Nerd Font Mono";
+            position = "0, 200";
+            halign = "center";
+            valign = "center";
+          }
+        ];
+        input-field = {
+          monitor = "AOC U34G2G4R3 0x0000A6BB";
+          size = "200,50";
+          outline_thickness = 2;
+          dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+          dots_spacing = 0.35; # Scale of dots' absolute size, 0.0 - 1.0
+          dots_center = true;
+          outer_color = "a9b1d6";
+          inner_color = "a9b1d6";
+          font_color = "1a1b26";
+          fade_on_empty = false;
+          rounding = -1;
+          check_color = "393552";
+          placeholder_text = ''<i><span foreground="##cdd6f4">Input Password...</span></i>'';
+          hide_input = false;
+          position = "0, -100";
+          halign = "center";
+          valign = "center";
+        };
+      };
+    };
+    # hypridle.enable = true;
     gh.enable = true;
     btop = {
       enable = true;

@@ -196,7 +196,7 @@ with lib;
           bind = ${modifier}SHIFT,F,togglefloating,
           bind = ${modifier}, I, pin
           bind = ${modifier},X,exec, wlogout
-          bind = ${modifier}, L, exec, hyprlock
+          bind = ${modifier}, L, exec, hyprlock-blur
           bind = ${modifier} SHIFT, B, movetoworkspace, special
           bind = ${modifier}, B, togglespecialworkspace
           bind = ${modifier}SHIFT,left,movewindow,l
@@ -211,10 +211,10 @@ with lib;
           bind = ${modifier},right,movefocus,r
           bind = ${modifier},up,movefocus,u
           bind = ${modifier},down,movefocus,d
-          bind = ${modifier},h,movefocus,l
-          bind = ${modifier},l,movefocus,r
-          bind = ${modifier},k,movefocus,u
-          bind = ${modifier},j,movefocus,d
+          # bind = ${modifier},h,movefocus,l
+          # bind = ${modifier},l,movefocus,r
+          # bind = ${modifier},k,movefocus,u
+          # bind = ${modifier},j,movefocus,d
           bind = ${modifier},1,workspace,1
           bind = ${modifier},2,workspace,2
           bind = ${modifier},3,workspace,3
