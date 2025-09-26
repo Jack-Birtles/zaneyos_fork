@@ -53,7 +53,8 @@ with lib;
           #exec-once = killall -q swaync;sleep .5 && swaync
           exec-once = nm-applet --indicator
           exec-once = lxqt-policykit-agent
-          exec-once = sleep 1.5 && swww img /home/${username}/Pictures/live_wallpapers/contours.png
+          # exec-once = sleep 1.5 && swww img /home/${username}/Pictures/live_wallpapers/contours.png
+          exec-once = waypaper --restore
           exec-once = mailspring --password-store="gnome-libsecret" %U --background
           monitor=desc:Lenovo Group Limited T24m-29 V90CP2GT,1920x1080@60.0,840x0,1.0
           monitor=desc:Lenovo Group Limited T24m-29 V90CP2GT,transform,1
@@ -174,11 +175,18 @@ with lib;
           windowrulev2 = float,class:(wasistlos)
           windowrulev2 = workspace special:whatsapp,class:(wasistlos)
           bind = ${modifier}SHIFT, W, exec, pgrep wasistlos && hyprctl dispatch togglespecialworkspace whatsapp || wasistlos &
+          
+          windowrulev2 = float,class:(discord)
+          windowrulev2 = workspace special:discord_workspace,class:(discord)
+          bind = ${modifier}SHIFT, D, exec, pgrep discord && hyprctl dispatch togglespecialworkspace discord_workspace || discord &
+          
+          windowrulev2 = float,class:(waypaper)
+          windowrulev2 = workspace special:waypaper_workspace,class:(waypaper)
+          bind = ${modifier}SHIFT, P, exec, pgrep waypaper && hyprctl dispatch togglespecialworkspace waypaper_workspace || waypaper &
 
           # bind = SUPER, escape, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
           bind = ${modifier},Return,exec,${terminal}
           bind = ${modifier},F1,exec,rofi-launcher
-          # bind = ${modifier}SHIFT,W,exec,web-search
           bind = ${modifier}ALT,W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           bind = ${modifier},C,exec,${browser}

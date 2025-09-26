@@ -23,7 +23,7 @@ with lib;
         position = "top";
         modules-left = [ "custom/launcher" "cpu" "memory" "hyprland/workspaces" "tray" ];
         modules-center = [ "clock" "custom/weather" ];
-        modules-right = [ "pulseaudio" "network" "custom/power" ];
+        modules-right = [ "mpris" "pulseaudio" "network" "custom/power" ];
 
         "hyprland/workspaces" = {
           format = "{name}";
@@ -92,6 +92,20 @@ with lib;
             ];
           };
           on-click = "sleep 0.1 && pavucontrol";
+        };
+        "mpris" = {
+         	format = "{player_icon} {dynamic}";
+         	format-paused = "{status_icon} <i>{artist} - {title} [{position} - {length}]</i>";
+         	player-icons = {
+          		default = "▶";
+          		mpv = "🎵";
+         	};
+         	status-icons = {
+          		paused = "⏸";
+         	};
+          dynamic-order = ["title" "artist" "position" "length"];
+          interval = 1;
+         	ignored-players = ["zen" "firefox"];
         };
         "custom/weather" = {
             "format" = "{}";

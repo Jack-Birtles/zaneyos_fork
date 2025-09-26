@@ -70,8 +70,8 @@ in
   # Install & Configure Git
   programs.git = {
     enable = true;
-    userName = "${gitUsername}";
-    userEmail = "${gitEmail}";
+    userName = "jack-birtles";
+    userEmail = "jack.birtles0@gmail.com";
     extraConfig = {
       credential.helper = "${
           pkgs.git.override { withLibsecret = true; }

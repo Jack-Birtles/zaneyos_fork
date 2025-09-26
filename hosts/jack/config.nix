@@ -236,6 +236,7 @@ in
     #    package = inputs.hyprland.packages.x86_64-linux.hyprland;
     #    portalPackage = inputs.hyprland.packages.x86_64-linux.xdg-desktop-portal-hyprland;
     #  };
+    nix-ld.enable = true;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -253,7 +254,7 @@ in
     cmatrix
     lolcat
     htop
-    #brave
+    brave
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
@@ -300,6 +301,7 @@ in
     tree
     neovide
     greetd.tuigreet
+    rofi
     #
     #------My Packages------
     #
@@ -335,6 +337,18 @@ in
     via
     lutris
     gparted
+    wine
+    arduino-ide
+    arduino-cli
+    gnumake
+    podman-desktop
+    inkscape
+    waypaper
+    dmidecode
+    lightburn
+    bottles
+    appimage-run
+    romraider
   ];
 
   services.udev.packages = with pkgs; [
@@ -384,7 +398,7 @@ in
     };
     greetd = {
       enable = true;
-      vt = 3;
+      # vt = 3; deprecated
       settings = {
         default_session = {
           # Wayland Desktop Manager is installed only for user ryan via home-manager!
